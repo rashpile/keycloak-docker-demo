@@ -15,7 +15,6 @@ services:
       POSTGRES_USER: ${DB_USER:-keycloak}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-keycloak}
   keycloak:
-    build: .
     container_name: demo-keycloak
     image: jboss/keycloak:latest
     environment:
@@ -36,7 +35,7 @@ services:
       # It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
       #JDBC_PARAMS: "ssl=true"
     command: [ "${KEYCLOAK_START_CMD}" ]
-    ports:
+#    ports:
 #    - ${KEYCLOAK_PORT:-8080}:8080
     depends_on:
     - postgres
