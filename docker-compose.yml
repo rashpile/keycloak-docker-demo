@@ -40,9 +40,12 @@ services:
   nginx:
     image: nginx:latest
     container_name: demo-keycloak-nginx
+    restart: on-failure
     environment:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    depends_on:
+    - keycloak
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
